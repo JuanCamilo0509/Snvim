@@ -45,6 +45,11 @@ return {
 			capabilities = capabilities,
 		})
 
+    -- Go
+    lspconfig["gopls"].setup({
+      capabilities = capabilities
+    })
+
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,

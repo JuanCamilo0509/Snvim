@@ -1,5 +1,5 @@
 local function map(m, k, v)
-	vim.keymap.set(m, k, v, { silent = false })
+  vim.keymap.set(m, k, v, { silent = false })
 end
 
 -- Spell
@@ -20,3 +20,4 @@ map('n', 'L', 'N')
 -- Vim lsp functionalities
 map('n', 'ff', ":lua vim.lsp.buf.format()<CR>")
 map('n', '<leader>rn', ":lua vim.lsp.buf.rename()<CR>")
+map('n', 'gs', ":lua require('java_util').getSet()<CR>")
