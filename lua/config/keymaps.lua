@@ -3,7 +3,7 @@ local function map(m, k, v)
 end
 
 -- Spell
-map('n', '<leader>s', "z=1<CR><CR>wgea ")
+map('n', '<leader>s', "z=1<CR><CR>wgea")
 
 -- Tools
 map('n', '<leader>n', ':w<CR>')

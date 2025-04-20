@@ -2,6 +2,9 @@ local function map(m, k, v)
 	vim.keymap.set(m, k, v, { silent = false })
 end
 --Dvorak
+map('n', 'gt', "gj")
+map('n', 'gn', "gk")
+
 --Right hand
 map('n', 'e', 'i')
 map('n', 'E', 'I')

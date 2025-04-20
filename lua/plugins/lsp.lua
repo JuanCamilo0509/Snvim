@@ -10,23 +10,13 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- configure C
-    -- lspconfig["ccls"].setup({
-    -- 	capabilities = capabilities
-    -- })
+    lspconfig["ccls"].setup({
+      capabilities = capabilities
+    })
 
     -- configure texlab
     lspconfig["texlab"].setup({
       capabilities = capabilities
-    })
-
-    -- configure Julia
-    lspconfig["julials"].setup({
-      capabilities = capabilities,
-    })
-
-    -- configure Julia
-    lspconfig["julials"].setup({
-      capabilities = capabilities,
     })
 
     -- configure Rust server
