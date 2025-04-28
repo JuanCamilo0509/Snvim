@@ -23,7 +23,7 @@ o.cursorlineopt = "number"
 
 -- Language formatting
 opt.spell = true
-opt.spelllang = { "en_us" }
+opt.spelllang = { "en_us", "es"}
 -- Find command
 opt.path = vim.opt.path + "**"
 -- Status Line
