@@ -2,6 +2,9 @@ local function map(m, k, v)
   vim.keymap.set(m, k, v, { silent = false })
 end
 
+-- List directory
+map('n', '<leader>ls', ':find ./<CR>')
+
 -- Spell
 map('n', '<leader>s', "z=1<CR><CR>wgea")
 
