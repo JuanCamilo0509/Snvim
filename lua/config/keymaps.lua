@@ -15,6 +15,8 @@ map('n', '<leader>t', ':q<CR>')
 -- G for go to
 map('n', 'gD', '<C-]>') -- Go to the global definition
 
+-- Just for the vertical mode :// (default?)
+map("i", "<C-c>", "<Esc>")
 
 -- Next and previous coincidences
 map('n', 'l', 'n')
