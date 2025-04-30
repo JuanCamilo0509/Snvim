@@ -22,4 +22,3 @@ map('n', 'L', 'N')
 
 -- Vim lsp functionalities
 map('n', 'ff', ":lua vim.lsp.buf.format()<CR>")
-map('n', '<leader>rn', ":lua vim.lsp.buf.rename()<CR>")
