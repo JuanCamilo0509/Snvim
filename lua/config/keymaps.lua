@@ -11,6 +11,7 @@ map('n', '<leader>s', "z=1<CR><CR>wgea")
 -- Tools
 map('n', '<leader>n', ':w<CR>')
 map('n', '<leader>t', ':q<CR>')
+map('n', '<leader>lr', ':UndotreeToggle<CR>')
 
 -- G for go to
 map('n', 'gD', '<C-]>') -- Go to the global definition
