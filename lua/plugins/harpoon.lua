@@ -8,12 +8,12 @@ return {
     local function map(lhs, rhs, opts)
       vim.keymap.set("n", lhs, rhs, opts or {})
     end
-    -- map("<c-Space>", function() harpoon:list():toggle_file() end)
-    map("<c-Space>", function() harpoon.list() end)
-    map("<c-b>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-    map("<c-h>", function() harpoon:list():select(1) end)
-    map("<c-t>", function() harpoon:list():select(2) end)
-    map("<c-n>", function() harpoon:list():select(3) end)
-    map("<c-s>", function() harpoon:list():select(4) end)
+    map("ma", function() harpoon:list():add() end)
+    map("md", function() harpoon:list():remove() end)
+    map("mo", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+    map("mh", function() harpoon:list():select(1) end)
+    map("mt", function() harpoon:list():select(2) end)
+    map("mn", function() harpoon:list():select(3) end)
+    map("ms", function() harpoon:list():select(4) end)
   end
 }
