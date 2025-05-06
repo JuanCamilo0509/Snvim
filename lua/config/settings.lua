@@ -1,11 +1,15 @@
 local o = vim.o
 local g = vim.g
 local opt = vim.opt
-local opt_local = vim.opt_local
+local opt_local = vim.opt
 vim.diagnostic.config({virtual_lines = true})
 opt_local.formatoptions:remove "o"
+opt.scrolloff = 999
 g.mapleader = ' '
 g.maplocalleader = ' '
+
+opt.hlsearch = false
+opt.incsearch = true
 
 o.number = true
 o.relativenumber = true
