@@ -1,9 +1,7 @@
 local function map(m, k, v)
 	vim.keymap.set(m, k, v, { silent = false })
 end
---Dvorak
-map('n', 'gt', "gj")
-map('n', 'gn', "gk")
+----Dvorak
 
 --Right hand
 map('n', 'e', 'i')
@@ -12,23 +10,22 @@ map('v', 'e', 'i')
 map('v', 'E', 'I')
 
 --Left hand
-map('n', 'H', 'b')
-map('v', 'H', 'b')
-
 map('n', 't', 'j')
-map('n', 'T', '10j')
 map('v', 't', 'j')
-map('v', 'T', '10j')
 
 map('n', 'n', 'k')
-map('n', 'N', '10k')
 map('v', 'n', 'k')
-map('v', 'N', '10k')
 
 map('n', 's', 'l')
-map('n', 'S', 'w')
 map('v', 's', 'l')
-map('v', 'S', 'w')
+
+-- Next and previous coincidences
+map('n', 'l', 'n')
+map('n', 'L', 'N')
+
+-- Lines wrap movement
+map('n', 'gt', "gj")
+map('n', 'gn', "gk")
 
 --Moving between windows
 map('n', '<C-w>s', '<C-w>l')

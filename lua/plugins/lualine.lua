@@ -21,8 +21,8 @@ return {
 		sections = {
 			lualine_a = { 'filename' },
 			lualine_b = { 'branch', 'diff' },
-			lualine_c = {},
-			lualine_x = { 'diagnostics' },
+			lualine_c = { 'diagnostics' },
+			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {}
 		}
