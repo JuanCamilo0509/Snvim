@@ -40,7 +40,7 @@ return {
     'echasnovski/mini.splitjoin',
     config = function()
       require('mini.splitjoin').setup()
-      map('n', "<leader><C-d>", ':lua MiniDiff.toggle_overlay()<CR>')
+      map('n', "<leader>hd", ':lua MiniDiff.toggle_overlay()<CR>')
     end
   }
 }
