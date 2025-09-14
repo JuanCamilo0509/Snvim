@@ -9,38 +9,67 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    -- configure C
-    lspconfig["ccls"].setup({
+    local OS = package.config:sub(1, 1) == "/" and "Linux" or "Windows"
+    if OS == "Windows" then
+      local user_home = os.getenv("USERPROFILE")
+      local gcc_path = user_home .. "\\scoop\\apps\\gcc\\current\\bin\\g++.exe"
+      lspconfig["clangd"].setup({
+        capabilities = capabilities,
+        cmd = { "clangd", "--query-driver=" .. gcc_path }
+      })
+    else
+      -- C, cmake, c++
+      lspconfig["ccls"].setup({
+        capabilities = capabilities
+      })
+    end
+
+    lspconfig["neocmake"].setup({
       capabilities = capabilities
     })
 
-    -- configure texlab
+    -- Texlab
     lspconfig["texlab"].setup({
       capabilities = capabilities
     })
 
-    -- configure Rust server
+    -- Rust
     lspconfig["rust_analyzer"].setup({
       capabilities = capabilities,
     })
 
-    -- configure typescript server with plugin
+    -- Bash
+    lspconfig["bashls"].setup({
+      capabilities = capabilities,
+    })
+
+    -- Svelte
+    lspconfig["svelte"].setup({
+      capabilities = capabilities,
+    })
+
+    -- Json
+    lspconfig["jsonls"].setup({
+      capabilities = capabilities,
+    })
+
+    -- Typescript
     lspconfig["ts_ls"].setup({
       capabilities = capabilities,
     })
 
-    -- configure css server
+    -- CCS
     lspconfig["cssls"].setup({
       capabilities = capabilities,
     })
 
-    -- configure emmet language server
+    -- Emmet
     lspconfig["emmet_ls"].setup({
       capabilities = capabilities,
       filetypes = { "html", "typescriptreact", "javascriptreact", "css" },
     })
 
-    -- configure python server
+    -- Python
     lspconfig["pyright"].setup({
       capabilities = capabilities,
     })
@@ -50,7 +79,7 @@ return {
       capabilities = capabilities
     })
 
-    -- configure lua server (with special settings)
+    -- Lua
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
       settings = {
