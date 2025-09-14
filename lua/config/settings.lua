@@ -25,6 +25,10 @@ o.shiftwidth = 2
 o.tabstop = 2
 o.softtabstop = 2
 
+--Undo Tree
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+
 -- Formatting
 o.cursorline = true
 o.cursorlineopt = "number"
