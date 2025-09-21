@@ -1,11 +1,10 @@
-vim.lsp.config('rust_analyser', {
+vim.lsp.config('rust_analyzer', {
   settings = {
-    ['rust_analyser'] = {
+    ['rust_analyzer'] = {
       diagnostics = {
-        enable = false;
+        enable = true;
       }
     }
   }
 })
-
-vim.lsp.enable('rust_analyser')
+vim.lsp.enable('rust_analyzer')
