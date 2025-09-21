@@ -1,46 +1,10 @@
-local function map(m, k, v)
-  vim.keymap.set(m, k, v, { silent = false })
-end
-return {
-  { 'echasnovski/mini.nvim' },
-  {
-    'echasnovski/mini.hipatterns',
-    config = function()
-      local hipatterns = require('mini.hipatterns')
-      require('mini.hipatterns').setup({
-        highlighters = {
-          hex_color = hipatterns.gen_highlighter.hex_color(),
-        },
-        delay = {
-          text_change = 200,
-          scroll = 50,
-        },
-      })
-    end
-  },
-  {
-    'echasnovski/mini.indentscope',
-    config = function()
-      require('mini.indentscope').setup()
-    end
-  },
-  {
-    'echasnovski/mini.pairs',
-    config = function()
-      require('mini.pairs').setup()
-    end
-  },
-  {
-    'echasnovski/mini.diff',
-    config = function()
-      require('mini.diff').setup()
-    end
-  },
-  {
-    'echasnovski/mini.splitjoin',
-    config = function()
-      require('mini.splitjoin').setup()
-      map('n', "<leader>hd", ':lua MiniDiff.toggle_overlay()<CR>')
-    end
-  }
-}
+vim.pack.add({
+  "https://github.com/nvim-mini/mini.pairs",
+  "https://github.com/nvim-mini/mini.hipatterns",
+  "https://github.com/nvim-mini/mini.indentscope",
+  "https://github.com/nvim-mini/mini.icons",
+})
+require('mini.pairs').setup()
+require('mini.hipatterns').setup()
+require('mini.indentscope').setup()
+require('mini.icons').setup()
