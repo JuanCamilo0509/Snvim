@@ -31,3 +31,8 @@ for i = string.byte("A"), string.byte("Z") do
   local m = string.char(i)
   map('n', "dm" .. m, ":delmarks " .. m .. "<CR>")
 end
+
+-- Fzf (f: files, h: help, g: grep)
+map("n", "<leader>ff", ":Pick files<CR>")
+map("n", "<leader>fg", ":Pick grep<CR>")
+map("n", "<leader>fh", ":Pick help<CR>")

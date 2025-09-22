@@ -1,18 +1,17 @@
-o = vim.o
+local o = vim.o
 local g = vim.g
 local opt = vim.opt
-local opt_local = vim.opt_local
 
 -- Default Configuration
 vim.diagnostic.config({ virtual_lines = true })
-opt_local.formatoptions:remove "o"
-opt.scrolloff = 10
+o.scrolloff = 10
 g.mapleader = ' '
 g.maplocalleader = ' '
+o.winborder = "rounded"
 
-opt.hlsearch = false
-opt.incsearch = true
-opt.linebreak = true
+o.hlsearch = false
+o.incsearch = true
+o.linebreak = true
 
 o.number = true
 o.relativenumber = true
@@ -26,8 +25,8 @@ o.tabstop = 2
 o.softtabstop = 2
 
 --Undo Tree
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-opt.undofile = true
+o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+o.undofile = true
 
 -- Formatting
 o.cursorline = true
@@ -38,7 +37,13 @@ opt.spell = true
 opt.spelllang = { "en_us", "es" }
 
 -- Find Command
-opt.path = vim.opt.path + "**"
+opt.path = opt.path + "**"
 
 -- Status Line
 opt.showmode = false
+
+--
+vim.diagnostic.config({
+  signs = false,
+  virtual_text = true,
+})
