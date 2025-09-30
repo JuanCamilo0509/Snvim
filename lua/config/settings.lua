@@ -25,7 +25,11 @@ o.tabstop = 2
 o.softtabstop = 2
 
 --Undo Tree
-o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+local home = os.getenv("HOME")
+if (home == nil) then 
+home = os.getenv("UserProfile")
+end
+o.undodir = home .. "/.vim/undodir"
 o.undofile = true
 
 -- Formatting
