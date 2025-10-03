@@ -3,7 +3,7 @@ vim.api.nvim_set_hl(0, 'CursorLineNr', { link = "Function" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
-vim.api.nvim_set_hl(0, "PmenuSel", { link = "Function"})
+vim.api.nvim_set_hl(0, "PmenuSel", { link = "Function" })
 
 -- Lua line Configuration
 local modes   = {
@@ -70,7 +70,11 @@ function GitBranch()
   local mode = vim.api.nvim_get_mode().mode
   local data = modes[mode] or { hl = "StatusLine" }
 
-  return string.format("%%#%s# %s%%*", data.hl, string.upper(branch))
+  if branch == "" then
+    return ""
+  else
+    return string.format("%%#%s# %s%%*", data.hl, string.upper(branch))
+  end
 end
 
 local statusline = {

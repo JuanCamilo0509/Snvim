@@ -1,7 +1,7 @@
 require('lsp.lua_ls')
 require('lsp.texlab')
 require('lsp.rust')
-require('lsp.kotlin')
+-- require('lsp.kotlin')
 require('lsp.weblsps')
 require('lsp.cxx')
 require('lsp.bash')

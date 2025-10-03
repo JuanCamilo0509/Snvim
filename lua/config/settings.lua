@@ -26,8 +26,8 @@ o.softtabstop = 2
 
 --Undo Tree
 local home = os.getenv("HOME")
-if (home == nil) then 
-home = os.getenv("UserProfile")
+if (home == nil) then
+  home = os.getenv("UserProfile")
 end
 o.undodir = home .. "/.vim/undodir"
 o.undofile = true
