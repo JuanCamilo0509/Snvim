@@ -6,20 +6,40 @@ vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
 vim.api.nvim_set_hl(0, "PmenuSel", { link = "Function" })
 
 -- Lua line Configuration
-local modes   = {
+local modes = {
   ["n"] = { name = "NORMAL ", hl = "Function" },
   ["i"] = { name = "INSERT ", hl = "String" },
   ["v"] = { name = "VISUAL ", hl = "Statement" },
   ["V"] = { name = "V-LINE ", hl = "Statement" },
   ["c"] = { name = "COMMAND", hl = "boolean" },
   ["R"] = { name = "REPLACE", hl = "boolean" },
+  ["x"] = { name = "V-BLOCK", hl = "boolean" },
 }
 
 local padding = "  "
 
+function LspStatus()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if next(clients) == nil then return false end
+  return true
+end
+
+function Icon_File_Lsp()
+  local icons = require('mini.icons')
+  local icon, hl = icons.get('file', vim.fn.expand('%:t'))
+  if LspStatus() then
+    return string.format("%%#%s#%s %%t%%*", hl, icon)
+  else
+    return string.format("%%#%s#   %%f%%*", hl)
+  end
+end
+
 function Mode()
   local mode = vim.api.nvim_get_mode().mode
-  local data = modes[mode] or { name = "UNKNOWN", hl = "StatusLine" }
+  if mode == string.char(22) then
+    mode = "x"
+  end
+  local data = modes[mode] or { name = mode, hl = "StatusLine" }
   return string.format("%%#%s#%s%%*", data.hl, data.name)
 end
 
@@ -29,66 +49,42 @@ function DiagnosticStatus()
   local warn = diag_count[2] or 0
 
   return
-      (err > 0 and string.format("%%#DiagnosticError#%s%%*", err) or "") .. padding ..
-      (warn > 0 and string.format("%%#DiagnosticWarn#%s%%*", warn) or "")
+      (err > 0 and string.format("%%#DiagnosticError#%s %%*", err) or "  ") .. padding ..
+      (warn > 0 and string.format("%%#DiagnosticWarn#%s %%*", warn) or "  ")
 end
 
-function GetBufMarks()
-  local bufBookmarks = {}
-  local bufnr = vim.api.nvim_get_current_buf()
-  local bufferMarks = vim.fn.getmarklist(bufnr)
-  local mode = vim.api.nvim_get_mode().mode
-  local data = modes[mode]
-  for _, mark in ipairs(bufferMarks) do
-    local formatingMark = string.sub(mark.mark, -1)
-    if formatingMark:match("%a") then
-      if mark.pos[2] == vim.fn.line(".") then
-        formatingMark = string.format("%%#%s#%s%%*", data.hl, formatingMark)
-      end
-      table.insert(bufBookmarks, formatingMark)
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+  callback = function()
+    local handle = io.popen("git branch --show-current 2>/dev/null")
+    if handle then
+      vim.b.git_branch = handle:read("*l") or ""
+      handle:close()
+    else
+      vim.b.git_branch = ""
     end
-  end
-  return table.concat(bufBookmarks, " ")
-end
+  end,
+})
 
-function GetGlobalMarks()
-  local bufBookmarks = {}
-  local bufferMarks = vim.fn.getmarklist()
-  for _, mark in ipairs(bufferMarks) do
-    local formatingMark = string.sub(mark.mark, -1)
-    if formatingMark:match("%a") then
-      table.insert(bufBookmarks, formatingMark)
-    end
-  end
-  return table.concat(bufBookmarks, " ")
-end
+
 
 function GitBranch()
-  local result = vim.system({ "git", "branch", "--show-current" }):wait()
-  local branch = result.stdout:gsub("\n", "")
+  local branch = vim.b.git_branch or ""
+  if branch == "" then return "" end
 
   local mode = vim.api.nvim_get_mode().mode
   local data = modes[mode] or { hl = "StatusLine" }
-
-  if branch == "" then
-    return ""
-  else
-    return string.format("%%#%s# %s%%*", data.hl, string.upper(branch))
-  end
+  return string.format("%%#%s#%s%%*", data.hl, string.upper(branch))
 end
 
-local statusline = {
-  padding .. '%{%v:lua.Mode()%}',
+vim.o.statusline = table.concat({
   padding,
-  ' %t',
-  ' %M' .. padding,
-  '%{%v:lua.GetBufMarks()%}',
+  '%{%v:lua.Mode()%}',
+  padding,
+  '%=',
+  '%{%v:lua.GitBranch()%}',
   '%=',
   '%{%v:lua.DiagnosticStatus()%}',
   padding,
-  '%{%v:lua.GetGlobalMarks()%}',
+  '%{%v:lua.Icon_File_Lsp()%}',
   padding,
-  '%{%v:lua.GitBranch()%}' .. padding,
-}
-
-vim.o.statusline = table.concat(statusline, '')
+}, '')

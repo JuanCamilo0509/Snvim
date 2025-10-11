@@ -15,7 +15,6 @@ vim.lsp.config('superhtml', {
 
 vim.lsp.enable({
   "emmet_language_server",
-  "superhtml",
   "svelte",
   "cssls",
   "jsonls",

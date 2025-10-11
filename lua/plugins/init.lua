@@ -1,5 +1,6 @@
 require("plugins.colorscheme")
 require("plugins.treesitter")
+require("plugins.harpoon")
 require("plugins.mini")
 require("plugins.oil")
 require("plugins.undotree")
