@@ -13,7 +13,9 @@ local modes = {
   ["V"] = { name = "V-LINE ", hl = "Statement" },
   ["c"] = { name = "COMMAND", hl = "boolean" },
   ["R"] = { name = "REPLACE", hl = "boolean" },
-  ["x"] = { name = "V-BLOCK", hl = "boolean" },
+  ["x"] = { name = "V-BLOCK", hl = "Statement" },
+  ["t"] = { name = "TERM", hl = "Function" },
+
 }
 
 local padding = "  "
@@ -30,7 +32,7 @@ function Icon_File_Lsp()
   if LspStatus() then
     return string.format("%%#%s#%s %%t%%*", hl, icon)
   else
-    return string.format("%%#%s#   %%f%%*", hl)
+    return string.format("%%#%s#   %%t%%*", hl)
   end
 end
 
@@ -38,6 +40,9 @@ function Mode()
   local mode = vim.api.nvim_get_mode().mode
   if mode == string.char(22) then
     mode = "x"
+    else if mode == "nt" then
+      mode = "t"
+    end
   end
   local data = modes[mode] or { name = mode, hl = "StatusLine" }
   return string.format("%%#%s#%s%%*", data.hl, data.name)

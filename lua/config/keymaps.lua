@@ -9,7 +9,7 @@ map('n', '<leader>a', ':find ./<CR>')
 map('n', '<leader>s', "z=1<CR><CR>wgea")
 
 -- Mini.diff
-map('n', 'gtd', '<cmd>lua MiniDiff.toggle_overlay()<CR>')
+map('n', 'grd', '<cmd>lua MiniDiff.toggle_overlay()<CR>')
 
 -- Tools
 map('n', '<leader>n', ':w<CR>')
@@ -30,3 +30,14 @@ map("i", "<C-c>", "<Esc>")
 map("n", "<leader>ff", ":Pick files<CR>")
 map("n", "<leader>fg", ":Pick grep<CR>")
 map("n", "<leader>fh", ":Pick help<CR>")
+
+-- Terminal
+map('t', '<esc>', [[<C-\><C-n>]])
+map('n', '<leader>eo', function()
+  vim.cmd.vnew()
+  vim.cmd.term("fish")
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 15)
+end)
+map('n', '<leader>ec', [[<C-\><C-n>]])
+map('n', '<leader>ec', [[<C-\><C-n>]])
