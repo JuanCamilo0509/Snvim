@@ -1,4 +1,5 @@
 require("plugins.colorscheme")
+require("plugins.esqueleto")
 require("plugins.treesitter")
 require("plugins.harpoon")
 require("plugins.mini")

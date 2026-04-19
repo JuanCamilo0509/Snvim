@@ -1,4 +1,5 @@
 require('lsp.lua_ls')
+require('lsp.docker')
 require('lsp.texlab')
 require('lsp.rust')
 require('lsp.gopls')
