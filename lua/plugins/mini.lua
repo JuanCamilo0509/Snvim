@@ -9,11 +9,11 @@ vim.pack.add({
 require('mini.pairs').setup()
 require('mini.hipatterns').setup({
   highlighters = {
-    -- Highlight standalone 'FIXME', 'BUG', 'TODO', 'NOTE'
+    -- Highlight standalone 'FIXME', 'BUG', 'TODO', 'FEATURE'
     fixme     = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-    bug       = { pattern = '%f[%w]()BUG()%f[%W]', group = 'MiniHipatternsHack' },
-    todo      = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
-    note      = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+    bug       = { pattern = '%f[%w]()BUG()%f[%W]', group = 'MiniHipatternsNote' },
+    todo      = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsHack' },
+    note      = { pattern = '%f[%w]()FEATURE()%f[%W]', group = 'MiniHipatternsTodo' },
 
     -- Highlight hex color strings (`#rrggbb`) using that color
     hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
